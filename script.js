@@ -23,7 +23,12 @@ function compareFunction() {
 	return Math.random() - 0.5; 
 }
 
-
+function distributeCards(){
+    for (let i = 0; i < cardNumber; i++) {
+        document.querySelector('.card-pool').innerHTML += `<div class="card"><div class="front-face face"><img src="assets/front.png" alt="" /></div><div class="back-face face"><img src="assets/${shuffledDeck[i]}.gif" alt="" /></div></div>`;    
+    }
+    
+}
 
 
 
@@ -32,4 +37,5 @@ function compareFunction() {
 
 cardNumberValidation();
 shuffleCards();
+distributeCards();
 
