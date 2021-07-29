@@ -11,6 +11,9 @@ function cardNumberValidation() {
 }
 
 function shuffleCards(){
+
+    cardList.sort(compareFunction);
+
     for (let i = 0; i < 2; i++) {
         for (let j = 0; j < cardNumber/2; j++) {
             shuffledDeck.push(cardList[j]);
@@ -25,12 +28,23 @@ function compareFunction() {
 
 function distributeCards(){
     for (let i = 0; i < cardNumber; i++) {
-        document.querySelector('.card-pool').innerHTML += `<div class="card"><div class="front-face face"><img src="assets/front.png" alt="" /></div><div class="back-face face"><img src="assets/${shuffledDeck[i]}.gif" alt="" /></div></div>`;    
+        document.querySelector('.card-pool').innerHTML += `<li class="card" onclick="pickCard(this);">
+        <div class="front-face face">
+            <img src="assets/front.png" alt="" />
+        </div>
+        <div class="back-face face">
+            <img src="assets/${shuffledDeck[i]}.gif" alt="" />
+        </div>
+    </li>`;    
     }
-    
 }
 
-
+function pickCard(pickedCard){
+    console.log(pickedCard);
+    pickedCard.querySelector('.front-face').setAttribute('style','transform: rotateY(-180deg);');
+    pickedCard.querySelector('.back-face').setAttribute('style','transform: rotateY(0deg);');
+    
+}
 
 
 
