@@ -41,16 +41,14 @@ function distributeCards(){
 
     let firstCard;
     let secondCard;
-
+    let clicksNumber = 0;
 function pickCard(pickedCard){
-
+    clicksNumber++;
     if (firstCard){
         secondCard = pickedCard;
-        console.log(secondCard);
     }
     else {
         firstCard = pickedCard;
-        console.log(firstCard)
     }
 
     pickedCard.querySelector('.front-face').setAttribute('style','transform: rotateY(-180deg);');
@@ -61,22 +59,36 @@ function pickCard(pickedCard){
             verifyPair();
     }
 
-    
 }
-
+let firstFlipDown, secondFlipDown;
 function verifyPair(){
     if (firstCard.querySelector('.back-face img').getAttribute('src')===secondCard.querySelector('.back-face img').getAttribute('src')){
     }
     else{
-        firstCard.querySelector('.front-face').setAttribute('style','transform: rotateY(0deg);');
-        firstCard.querySelector('.back-face').setAttribute('style','transform: rotateY(180deg);');
-        secondCard.querySelector('.front-face').setAttribute('style','transform: rotateY(0deg);');
-        secondCard.querySelector('.back-face').setAttribute('style','transform: rotateY(180deg);');
+        console.log("else funcionando");
+        firstFlipDown = firstCard;
+        secondFlipDown = secondCard;
+        globi = setTimeout(flipCardDown, 1000);
     }
     firstCard = undefined;
     secondCard = undefined;
 }
 
+function flipCardDown(){
+    console.log("fcd");
+    firstFlipDown.querySelector('.front-face').setAttribute('style','transform: rotateY(0deg);');
+    firstFlipDown.querySelector('.back-face').setAttribute('style','transform: rotateY(180deg);');
+    secondFlipDown.querySelector('.front-face').setAttribute('style','transform: rotateY(0deg);');
+    secondFlipDown.querySelector('.back-face').setAttribute('style','transform: rotateY(180deg);');
+    firstFlipDown = undefined;
+    secondFlipDown = undefined;
+    
+}
+
+
+function alertFunc() {
+    alert("Hello!");
+}
 
 cardNumberValidation();
 shuffleCards();
