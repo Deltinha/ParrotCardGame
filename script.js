@@ -30,7 +30,7 @@ function distributeCards(){
     for (let i = 0; i < cardNumber; i++) {
         document.querySelector('.card-pool').innerHTML += `<li class="card" onclick="pickCard(this);">
         <div class="front-face face">
-            <img src="assets/front.png" alt="" />${shuffledDeck[i]}
+            <img src="assets/front.png" alt="" />
         </div>
         <div class="back-face face">
             <img src="assets/${shuffledDeck[i]}.gif" alt="" />
