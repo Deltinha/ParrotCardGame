@@ -41,10 +41,11 @@ function distributeCards(){
 
     let firstCard;
     let secondCard;
-    let clicksNumber = 0;
+    let flipsNumber = 0;
+    let pairsFound = 0;
 function pickCard(pickedCard){
     if (gameBusy === false){    
-        clicksNumber++;
+        flipsNumber++;
         if (firstCard){
             secondCard = pickedCard;
             gameBusy = true;
@@ -66,10 +67,14 @@ function pickCard(pickedCard){
 let gameBusy = false;
 function verifyPair(){
     if (firstCard.querySelector('.back-face img').getAttribute('src')===secondCard.querySelector('.back-face img').getAttribute('src')){
-        
+        pairsFound++;
         firstCard = undefined;
         secondCard = undefined;
         gameBusy = false;
+        if (pairsFound===cardNumber/2){
+            alert(`Você ganhou em ${flipsNumber} jogadas!`);
+        }
+        
     }
     else{
         setTimeout(flipCardDown, 1000);
