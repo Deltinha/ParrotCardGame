@@ -6,7 +6,11 @@ let cardsFlipped = 0;
 let pairsFound = 0;
 let cardQuantity;
 let cardsTable = document.querySelector('ul');
+
 let gameBusy = false;
+let intervalID;
+timerElement = document.querySelector('.seconds-passed');
+let time = 0;
 
 newGame();
 
@@ -15,10 +19,19 @@ function newGame(){
         cardQuantityValidation();
         shuffleCards();
         distributeCards();
+        startTimer();
 }
 
+function startTimer(){
+    intervalID = setInterval(function(){
+        time++;
+        updateTimer();
+    },1000)
+}
 
-
+function updateTimer(){
+    timerElement.innerHTML = time;
+}
 
 function cardQuantityValidation() {
     while (!cardQuantity || cardQuantity % 2 !== 0 || cardQuantity > 14 || cardQuantity < 4)
@@ -107,8 +120,10 @@ function flipCardDown(){
 }
 
 function endGame(){
-    let playAgain = prompt(`Você ganhou em ${cardsFlipped} jogadas! Deseja jogar novamente?`);
+    let playAgain = prompt(`Você ganhou em ${cardsFlipped} jogadas e ${time} segundos! Deseja jogar novamente?`);
     if (playAgain==='sim'){
+        clearInterval(intervalID);
+        time = 0;
         cardQuantity = 0;
         shuffledDeck.length = 0;
         cardsFlipped = 0;

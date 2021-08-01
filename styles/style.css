@@ -12,6 +12,15 @@ h1{
     text-align: center; 
 
     margin-top: 40px;
+}
+
+h2{
+    color: #75B79E;
+    font-size: 44px;
+    font-weight: 400;
+    text-align: center; 
+
+    margin-top: 20px;
     margin-bottom: 47px;
 }
 
@@ -70,5 +79,8 @@ ul{
 @media (max-width: 377px){
     h1{
         font-size: 36px;
+    }
+    h2{
+        font-size: 24px;
     }
 }
