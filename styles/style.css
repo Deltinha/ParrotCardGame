@@ -29,6 +29,7 @@ h2{
 .score-board li{
     text-align: center;
     margin-bottom: 5px;
+    font-size: 20px;
 }
 
 .table{
@@ -72,14 +73,6 @@ h2{
     
 }
 
-/* .card:hover .back-face {
-    transform: rotateY(0deg);
-}
-
-.card:hover .front-face{
-    transform: rotateY(-180deg);
-} */
-
 .card img{
     width: 100px;
 }
@@ -88,7 +81,12 @@ h2{
     h1{
         font-size: 36px;
     }
+    
     h2{
         font-size: 24px;
+    }
+
+    .score-board li{
+        font-size: 15px;
     }
 }
