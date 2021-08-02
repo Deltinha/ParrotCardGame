@@ -105,6 +105,8 @@ function pickCard(pickedCard){
 
 function verifyPair(){
     if (firstCard.querySelector('.back-face img').getAttribute('src')===secondCard.querySelector('.back-face img').getAttribute('src')){
+        firstCard.removeAttribute('onclick');
+        secondCard.removeAttribute('onclick');
         pairsFound++;
         firstCard = undefined;
         secondCard = undefined;
@@ -152,7 +154,7 @@ function endGame(){
 }
 
 function calcScore(){
-    playerScore = 500*cardQuantity/((time/cardQuantity) + (cardsFlipped/cardQuantity)).toFixed(0);
+    playerScore = 500*cardQuantity/((time/cardQuantity) + (cardsFlipped/cardQuantity));
 }
 
 function pushScore(){
@@ -166,7 +168,7 @@ function sortScoreArray(){
 function updateScoreboard(){
     scoreBoard.innerHTML = '';
     for (let i = 0; i < scoresArray.length; i++) {
-        scoreBoard.innerHTML += `<li>${scoresArray[i].name} :${scoresArray[i].score}</li>`
+        scoreBoard.innerHTML += `<li>${scoresArray[i].name} :${scoresArray[i].score.toFixed(0)}</li>`
         
     }
 }
