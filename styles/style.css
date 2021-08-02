@@ -3,10 +3,10 @@
 body{
     background-color:#EEF9BF;
     font-family: 'Roboto';
+    color: #75B79E;
 }
 
 h1{
-    color: #75B79E;
     font-size: 56px;
     font-weight: 700;
     text-align: center; 
@@ -15,16 +15,24 @@ h1{
 }
 
 h2{
-    color: #75B79E;
     font-size: 44px;
     font-weight: 400;
     text-align: center; 
 
     margin-top: 20px;
-    margin-bottom: 47px;
 }
 
-ul{
+.score-board{
+    margin-top: 10px;
+}
+
+.score-board li{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.table{
+    margin-top: 47px;
     margin-left: auto;
     margin-right: auto;
     width: 80vw;

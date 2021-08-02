@@ -5,21 +5,33 @@ let secondCard;
 let cardsFlipped = 0;
 let pairsFound = 0;
 let cardQuantity;
-let cardsTable = document.querySelector('ul');
+let cardsTable = document.querySelector('.table');
 
 let gameBusy = false;
 let intervalID;
 timerElement = document.querySelector('.seconds-passed');
 let time = 0;
+let scoreBoard = document.querySelector('.score-board');
+
+let playerName = '';
+let playerScore;
+
+
+const scoresArray = [];
 
 newGame();
 
 function newGame(){
-
+        updateTimer();
+        askName();
         cardQuantityValidation();
         shuffleCards();
         distributeCards();
         startTimer();
+}
+
+function askName(){
+    playerName = prompt('Qual seu nome?');
 }
 
 function startTimer(){
@@ -61,7 +73,7 @@ function distributeCards(){
     for (let i = 0; i < cardQuantity; i++) {
         cardsTable.innerHTML += `<li class="card" onclick="pickCard(this);">
         <div class="front-face face">
-            <img src="assets/front.png" alt="" />${shuffledDeck[i]}
+            <img src="assets/front.png" alt="" />
         </div>
         <div class="back-face face">
             <img src="assets/${shuffledDeck[i]}.gif" alt="" />
@@ -119,10 +131,16 @@ function flipCardDown(){
     gameBusy = false;
 }
 
+
 function endGame(){
+    clearInterval(intervalID);
+    calcScore();
+    pushScore();
+    sortScoreArray();
+    updateScoreboard();
     let playAgain = prompt(`Você ganhou em ${cardsFlipped} jogadas e ${time} segundos! Deseja jogar novamente?`);
     if (playAgain==='sim'){
-        clearInterval(intervalID);
+        
         time = 0;
         cardQuantity = 0;
         shuffledDeck.length = 0;
@@ -133,4 +151,22 @@ function endGame(){
     }
 }
 
+function calcScore(){
+    playerScore = 500*cardQuantity/((time/cardQuantity) + (cardsFlipped/cardQuantity)).toFixed(0);
+}
 
+function pushScore(){
+    scoresArray.push({name: playerName, score: playerScore});
+}
+
+function sortScoreArray(){
+    scoresArray.sort((a, b) => b.score - a.score);
+}
+
+function updateScoreboard(){
+    scoreBoard.innerHTML = '';
+    for (let i = 0; i < scoresArray.length; i++) {
+        scoreBoard.innerHTML += `<li>${scoresArray[i].name} :${scoresArray[i].score}</li>`
+        
+    }
+}
